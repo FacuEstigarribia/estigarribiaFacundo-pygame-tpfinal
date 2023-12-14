@@ -1,0 +1,145 @@
+{
+    "stage_1": {
+        
+        "scenario": {
+            
+            "background": "./images/locations/goku_house.png",
+            "music": "./sounds/sonido_intergalactic_odyssey.ogg"
+        },
+
+        "player": {
+            "coord_x": 0,
+            "coord_y" : 400,
+            "speed_walk":6,
+            "speed_run":12,
+            "gravity":20,
+            "jump_power":30,
+            "frame_rate_ms":100,
+            "move_rate_ms":50,
+            "jump_height":140,
+            "p_scale":0.2,
+            "interval_time_jump":300
+        },
+        "enemies":{
+            "enemies_mount" : 2,
+            "enemies_pos":[
+                {
+                    "x": 600,
+                    "y": 390,
+                    "speed_walk": 6,
+                    "speed_run": 5,
+                    "gravity": 14,
+                    "jump_power": 30,
+                    "frame_rate_ms": 150,
+                    "move_rate_ms": 50,
+                    "jump_height": 140,
+                    "p_scale": 0.08,
+                    "interval_time_jump": 300
+                },
+                {
+                    "x": 700,
+                    "y": 390,
+                    "speed_walk": 6,
+                    "speed_run": 5,
+                    "gravity": 14,
+                    "jump_power": 30,
+                    "frame_rate_ms": 150,
+                    "move_rate_ms": 50,
+                    "jump_height": 140,
+                    "p_scale": 0.08,
+                    "interval_time_jump": 300
+                }
+            ]
+        },
+        "items":{
+            "items_mount":4,
+            "items_pos":[
+                {"x": 170, "y":470},
+                {"x": 570, "y":479},
+                {"x": 714, "y":402},
+                {"x": 1304, "y":508}
+            ]
+        },
+
+        "plataformas":{
+            "plataformas_mount":5,
+            "plataformas_pos":[
+                {"x":100,"y":500, "width": 220, "height": 50},
+                {"x":500,"y":500, "width": 150, "height": 50},
+                {"x":690,"y":430, "width": 230, "height": 50},
+                {"x":897,"y":512, "width": 100, "height": 50},
+                {"x":1020,"y":540,"width": 800, "height": 50}
+            ]
+        }
+        
+    },
+    "stage_2": {
+        "scenario": {
+            
+            "background": "./images/locations/Volcano.png",
+            "music": "./sounds/sonido_intergalactic_odyssey.ogg"
+        },
+
+        "player": {
+            "coord_x": 0,
+            "coord_y" : 400,
+            "speed_walk":6,
+            "speed_run":12,
+            "gravity":20,
+            "jump_power":30,
+            "frame_rate_ms":100,
+            "move_rate_ms":50,
+            "jump_height":140,
+            "p_scale":0.2,
+            "interval_time_jump":300
+        },
+        "enemies":{
+            "enemies_mount" : 2,
+            "enemies_pos":[
+                {
+                    "x": 600,
+                    "y": 490,
+                    "speed_walk": 6,
+                    "speed_run": 5,
+                    "gravity": 14,
+                    "jump_power": 30,
+                    "frame_rate_ms": 150,
+                    "move_rate_ms": 50,
+                    "jump_height": 140,
+                    "p_scale": 0.08,
+                    "interval_time_jump": 300
+                },
+                {
+                    "x": 1200,
+                    "y": 490,
+                    "speed_walk": 6,
+                    "speed_run": 5,
+                    "gravity": 14,
+                    "jump_power": 30,
+                    "frame_rate_ms": 150,
+                    "move_rate_ms": 50,
+                    "jump_height": 140,
+                    "p_scale": 0.08,
+                    "interval_time_jump": 300
+                }
+            ]
+        },
+        "items":{
+            "items_mount":3,
+            "items_pos":[
+                {"x": 305, "y":420},
+                {"x": 540, "y":330},
+                {"x": 714, "y":200}
+            ]
+        },
+
+        "plataformas":{
+            "plataformas_mount":3,
+            "plataformas_pos":[
+                {"x":290,"y":500, "width": 220, "height": 50},
+                {"x":350,"y":390, "width": 150, "height": 50},
+                {"x":600,"y":365, "width": 230, "height": 50}
+            ]
+        }
+    }
+}
