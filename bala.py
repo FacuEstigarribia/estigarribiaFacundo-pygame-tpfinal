@@ -4,8 +4,8 @@ from constantes import *
 class Bala(pygame.sprite.Sprite):
     def __init__(self, x, y, direccion, speed_shoot) -> None:
         super().__init__()
-        self.image = pygame.image.load(r"images/bullet/bala.jpg").convert_alpha()
-        self.image = pygame.transform.scale(self.image, (100, 60))
+        self.image = pygame.image.load(r"images/bullet/bala2.jpg").convert_alpha()
+        self.image = pygame.transform.scale(self.image, (80, 10))
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.centery = y

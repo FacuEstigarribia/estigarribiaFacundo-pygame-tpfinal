@@ -59,6 +59,9 @@ class Player(pygame.sprite.Sprite):
         self.last_shoot_time = 0
         self.shoot_cooldown = 1000
         
+        
+        self.laser_fx = pygame.mixer.Sound(LASER_PATH)
+        
     
     def __set_x_animations_preset(self, move_x, animation_list: list[pygame.surface.Surface], look_r: bool):
         self.move_x = move_x
@@ -198,12 +201,13 @@ class Player(pygame.sprite.Sprite):
 
             if(not self.is_on_plataform(plataform_list)):
                 if(self.move_y == 0):
-                    self.is_fall = True
+                    self.is_fall = False
                     self.change_y(self.gravity)
             else:
                 if (self.is_jump): 
                     self.jump(False)
-                self.is_fall = False            
+                self.is_fall = False  
+                      
 
     def is_on_plataform(self,plataform_list):
         retorno = False
@@ -271,6 +275,8 @@ class Player(pygame.sprite.Sprite):
 
         if(keys[pygame.K_s] and not keys[pygame.K_a]) and not self.is_shoot:
             nueva_bala = self.crear_bala()
+            self.laser_fx.play()
+            self.laser_fx.set_volume(0.05)
             if nueva_bala:
                 self.lista_balas.add(nueva_bala)
                 print('estoy disparando')

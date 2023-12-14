@@ -1,5 +1,6 @@
 import pygame
-from gui_widget import Widget
+from pygame.locals import *
+from UI.GUI_widget import *
 
 class Label(Widget):
     def __init__(self, screen,x,y,w,h,text, font, font_size, font_color, path_image):

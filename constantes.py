@@ -4,6 +4,7 @@ GROUND_LEVEL = 600
 FPS = 60
 DATA = "config.json"
 
+LASER_PATH = "sounds/sounds_PG_LASER.mp3"
 
 DIRECTION_L = -1
 DIRECTION_R = 1

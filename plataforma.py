@@ -16,6 +16,9 @@ class Plataform(pygame.sprite.Sprite):
         self.ground_collition_rect = pygame.Rect(self.rect)
         self.ground_collition_rect.height = GROUND_COLLIDE_H
 
+    def get_top_collision(self):
+        return self.collition_rect.top
+
     def draw(self,screen):
         
         if(DEBUG):
