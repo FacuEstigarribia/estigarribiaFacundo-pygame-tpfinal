@@ -138,7 +138,102 @@
             "plataformas_pos":[
                 {"x":290,"y":500, "width": 220, "height": 50},
                 {"x":350,"y":390, "width": 150, "height": 50},
-                {"x":600,"y":365, "width": 230, "height": 50}
+                {"x":555,"y":365, "width": 230, "height": 50}
+            ]
+        }
+    },
+    "stage_3": {
+        "scenario": {
+            
+            "background": "./images/locations/level3.png",
+            "music": "./sounds/sonido_intergalactic_odyssey.ogg"
+        },
+
+        "player": {
+            "coord_x": 0,
+            "coord_y" : 400,
+            "speed_walk":6,
+            "speed_run":12,
+            "gravity":20,
+            "jump_power":30,
+            "frame_rate_ms":100,
+            "move_rate_ms":50,
+            "jump_height":140,
+            "p_scale":0.2,
+            "interval_time_jump":300
+        },
+        "enemies":{
+            "enemies_mount" : 4,
+            "enemies_pos":[
+                {
+                    "x": 300,
+                    "y": 490,
+                    "speed_walk": 6,
+                    "speed_run": 5,
+                    "gravity": 14,
+                    "jump_power": 30,
+                    "frame_rate_ms": 150,
+                    "move_rate_ms": 50,
+                    "jump_height": 140,
+                    "p_scale": 0.08,
+                    "interval_time_jump": 300
+                },
+                {
+                    "x": 1200,
+                    "y": 490,
+                    "speed_walk": 6,
+                    "speed_run": 5,
+                    "gravity": 14,
+                    "jump_power": 30,
+                    "frame_rate_ms": 150,
+                    "move_rate_ms": 50,
+                    "jump_height": 140,
+                    "p_scale": 0.08,
+                    "interval_time_jump": 300
+                },
+                {
+                    "x": 455,
+                    "y": 490,
+                    "speed_walk": 6,
+                    "speed_run": 5,
+                    "gravity": 14,
+                    "jump_power": 30,
+                    "frame_rate_ms": 150,
+                    "move_rate_ms": 50,
+                    "jump_height": 140,
+                    "p_scale": 0.08,
+                    "interval_time_jump": 300
+                },
+                {
+                    "x": 1250,
+                    "y": 490,
+                    "speed_walk": 6,
+                    "speed_run": 5,
+                    "gravity": 14,
+                    "jump_power": 30,
+                    "frame_rate_ms": 150,
+                    "move_rate_ms": 50,
+                    "jump_height": 140,
+                    "p_scale": 0.08,
+                    "interval_time_jump": 300
+                }
+            ]
+        },
+        "items":{
+            "items_mount":2,
+            "items_pos":[
+                {"x": 305, "y":420},
+                {"x": 540, "y":330}
+                
+            ]
+        },
+
+        "plataformas":{
+            "plataformas_mount":2,
+            "plataformas_pos":[
+                {"x":290,"y":500, "width": 220, "height": 50},
+                {"x":350,"y":390, "width": 150, "height": 50}
+                
             ]
         }
     }

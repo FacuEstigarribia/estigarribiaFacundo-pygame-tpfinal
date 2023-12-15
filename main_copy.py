@@ -18,19 +18,24 @@ class Nivel:
     def __init__(self) -> None:
         self.state_1 = "stage_1"
         self.state_2 = "stage_2"
+        self.state_3 = "stage_3"
         self.data = self.load_level_data()  
         self.background_1 = Background(0, 0, ANCHO_VENTANA, ALTO_VENTANA,self.data[self.state_1]["scenario"]["background"])
         self.background_2 = Background(0, 0, ANCHO_VENTANA, ALTO_VENTANA,self.data[self.state_2]["scenario"]["background"])
+        self.background_3 = Background(0, 0, ANCHO_VENTANA, ALTO_VENTANA,self.data[self.state_3]["scenario"]["background"])
         self.music_level1 = pygame.mixer.music.load(self.data[self.state_1]["scenario"]["music"])
         self.music_level1 = pygame.mixer.music.play(-1)
         self.music_level1 = pygame.mixer.music.set_volume(0.01)
         self.player = Player(self.data[self.state_1]["player"])
         self.enemies_group_1 = pygame.sprite.Group()
         self.enemies_group_2 = pygame.sprite.Group()
+        self.enemies_group_3 = pygame.sprite.Group()
         self.plataformas_1 = pygame.sprite.Group()
         self.plataformas_2 = pygame.sprite.Group()
+        self.plataformas_3 = pygame.sprite.Group()
         self.items_1 = pygame.sprite.Group()
         self.items_2 = pygame.sprite.Group()
+        self.items_3 = pygame.sprite.Group()
         
         # For para cargar enemigos nivel uno
         for index in range(self.data[self.state_1]["enemies"]["enemies_mount"]):
@@ -43,6 +48,12 @@ class Nivel:
             data = self.data[self.state_2]["enemies"]["enemies_pos"][index]
             enemigo = Enemy(data, 1)
             self.enemies_group_2.add(enemigo)
+            
+        # For para cargar enemigos nivel tres
+        for index in range(self.data[self.state_3]["enemies"]["enemies_mount"]):
+            data = self.data[self.state_3]["enemies"]["enemies_pos"][index]
+            enemigo = Enemy(data, 1)
+            self.enemies_group_3.add(enemigo)
         
         # For para cargar plataformas nivel uno
         for index in range(self.data[self.state_1]["plataformas"]["plataformas_mount"]):
@@ -52,9 +63,15 @@ class Nivel:
             
         #For para cargar plataformas nivel dos
         for index in range(self.data[self.state_2]["plataformas"]["plataformas_mount"]):
-            coords = self.data[self.state_1]["plataformas"]["plataformas_pos"][index]
+            coords = self.data[self.state_2]["plataformas"]["plataformas_pos"][index]
             plataforma = Plataform(coords, 1)
             self.plataformas_2.add(plataforma)
+        
+         #For para cargar plataformas nivel tres
+        for index in range(self.data[self.state_3]["plataformas"]["plataformas_mount"]):
+            coords = self.data[self.state_3]["plataformas"]["plataformas_pos"][index]
+            plataforma = Plataform(coords, 1)
+            self.plataformas_3.add(plataforma)
             
         # For para cargar items nivel uno
         for index in range(self.data[self.state_1]["items"]["items_mount"]):
@@ -67,6 +84,12 @@ class Nivel:
             coords = self.data[self.state_2]["items"]["items_pos"][index]
             item = Item(coords)
             self.items_2.add(item)
+        
+        # For para cargar items nivel tres
+        for index in range(self.data[self.state_3]["items"]["items_mount"]):
+            coords = self.data[self.state_3]["items"]["items_pos"][index]
+            item = Item(coords)
+            self.items_3.add(item)
 
         
         
@@ -188,11 +211,78 @@ class Nivel:
 
             self.player.update(delta_ms,self.plataformas_2, keys)
             self.player.draw(screen)
+            
+            if len(self.enemies_group_2.sprites()) == 0 and len(self.items_2.sprites()) == 0:
+                self.stage_3()
 
             
 
             if running == True:
                 pygame.display.flip()
+         
+        
+    def stage_3(self):
+        print("entre al stage 3")
+        running = True
+        while running:
+            time = int(pygame.time.get_ticks()/1000) #tiempo de juego
+            keys = pygame.key.get_pressed()
+            delta_ms = clock.tick(FPS)
+            lista_eventos = pygame.event.get()
+            self.background_3.draw(screen)
+            contador_time = fuente.render("Tiempo: " + str(time),0, C_BLACK)
+            screen.blit(contador_time, (52, 25))
+            
+            spawn_timer = pygame.time.get_ticks()
+                
+            for event in lista_eventos:
+                # Salir
+                if event.type == pygame.QUIT:
+                    running == False
+                    sys.exit()
+                # Pausa
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_p:
+                        pygame.mixer.music.pause()
+                        pause()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    print(event.pos)
+                    
+            now = pygame.time.get_ticks()
+            if now - spawn_timer > 2000:  # Genera un enemigo cada 2000 milisegundos (2 segundos)
+                spawn_timer = now
+                new_enemy = Enemy(x=random.randint(40, 1350), y=random.randint(60, 1350), speed_walk=6)
+                self.enemies_group_2.add(new_enemy)
+            
+            # update de los enemigos
+            for enemy in self.enemies_group_3:
+                enemy.update(delta_ms, self.enemies_group_3)
+                enemy.draw(screen)
+                
+            for platforma in self.plataformas_3:
+                platforma.draw(screen)
+                
+            for bala in self.player.lista_balas:
+                bala.update(self.enemies_group_3)
+                self.player.lista_balas.draw(screen)
+
+
+            for coin in self.items_3:
+                coin.update(delta_ms, self.player)
+                coin.draw(screen)
+                
+            score_text = fuente.render(f"Puntuación: {self.player.score}", True, C_BLACK)
+            screen.blit(score_text, (1200, 25))
+                
+
+            self.player.update(delta_ms,self.plataformas_2, keys)
+            self.player.draw(screen)
+                 
+
+            if running == True:
+                pygame.display.flip()
+               
+        
 
     def nivel_manager(self):
         if self.state_1 == "stage_1":
